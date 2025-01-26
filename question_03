@@ -1,0 +1,30 @@
+class Conta {
+    constructor(public titular: string, public saldo: number) {}
+
+    transferir(valor: number, contaDestino: Conta): void {
+        if (valor > this.saldo) {
+            throw new Error("Saldo insuficiente para a transferência.")
+        }
+        this.saldo -= valor
+        contaDestino.saldo += valor
+    }
+}
+
+const conta1 = new Conta("Maria", 100)
+const conta2 = new Conta("João", 50)
+
+try {
+    // Tentativa de transferir mais do que o saldo disponível
+    conta1.transferir(200, conta2)
+} catch (error) {
+    console.error("Erro na transferência:", error.message)
+}
+
+console.log(`Saldo da conta de Maria: ${conta1.saldo}`)
+console.log(`Saldo da conta de João: ${conta2.saldo}`)
+
+
+//Tentativa de transferência: O método transferir verificou que o valor a ser transferido (200) era maior que o saldo disponível na conta de Maria (100).
+Erro lançado: Um erro foi lançado usando throw new Error("Saldo insuficiente...").
+Bloco catch: O erro foi capturado, exibindo a mensagem "Erro na transferência: Saldo insuficiente para a transferência".
+Saldos mantidos: Como a transferência falhou, os saldos de ambas as contas permaneceram inalterados.//
