@@ -1,0 +1,51 @@
+class Conta {
+    constructor(public titular: string, public saldo: number) {}
+
+    transferir(valor: number, contaDestino: Conta): void {
+        if (valor > this.saldo) {
+            throw new Error(`Saldo insuficiente para transferir R$${valor}.`)
+        }
+        this.saldo -= valor
+        contaDestino.saldo += valor
+    }
+}
+
+class Banco {
+    contas: Conta[] = []
+
+    adicionarConta(conta: Conta): void {
+        this.contas.push(conta)
+    }
+
+    transferir(titularOrigem: string, titularDestino: string, valor: number): void {
+        const contaOrigem = this.contas.find(c => c.titular === titularOrigem)
+        const contaDestino = this.contas.find(c => c.titular === titularDestino)
+
+        if (!contaOrigem || !contaDestino) {
+            throw new Error("Uma das contas não foi encontrada.")
+        }
+
+        contaOrigem.transferir(valor, contaDestino)
+    }
+}
+
+class App {
+    banco = new Banco()
+
+    menu(): void {
+        
+        this.banco.adicionarConta(new Conta("Maria", 100))
+        this.banco.adicionarConta(new Conta("João", 50))
+
+        try {
+            
+            console.log("Tentando transferir R$200 de Maria para João...")
+            this.banco.transferir("Maria", "João", 200)
+        } catch (error) {
+            console.error("Erro no menu:", (error as Error).message)
+        }
+    }
+}
+
+const app = new App()
+app.menu()
