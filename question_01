@@ -1,0 +1,38 @@
+1. Try-Catch
+Utilizado para capturar erros durante a execução e evitar que o programa seja interrompido.
+Exemplo:
+try {
+    const num = parseInt("abc")
+    console.log(num * 2)
+} catch (error) {
+    console.error("Erro: Entrada inválida.", error)
+}
+
+2. Validação Antecipada
+Evita erros verificando condições antes de realizar operações arriscada
+Exemplo:
+function dividir(a: number, b: number): number | string {
+    if (b === 0) {
+        return "Erro: Divisão por zero não é permitida."
+    }
+    return a / b;
+}
+
+console.log(dividir(10, 2))
+console.log(dividir(10, 0))
+
+3. Lançamento de Exceções (Throw)
+Permite criar erros personalizados e interromper o fluxo quando necessário.
+Exemplo:
+function validarIdade(idade: number): void {
+    if (idade < 0) {
+        throw new Error("Idade não pode ser negativa.");
+    }
+    console.log("Idade válida:", idade);
+}
+
+try {
+    validarIdade(-5);
+} catch (error) {
+    console.error("Erro:", error.message);
+}
