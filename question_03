@@ -1,0 +1,18 @@
+1- Try-Catch
+Impacta a performance se usado em excesso.
+Pode capturar erros não relacionados, mascarando problemas.
+Difícil depuração em casos genéricos.
+2- Validação Antecipada
+Torna o código prolixo e repetitivo.
+Não cobre todos os casos de erro possíveis.
+Pode duplicar lógica em validações complexas.
+3- Throw (Lançamento de Exceções)
+Exige que o erro seja tratado manualmente, aumentando complexidade.
+Pode interromper o fluxo inesperadamente.
+Difícil rastreamento em sistemas grandes, se mal documentado.
+
+
+
+
+
+
